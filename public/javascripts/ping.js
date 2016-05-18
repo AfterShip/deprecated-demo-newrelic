@@ -27,7 +27,7 @@ function updateRps() {
 }
 
 function appendLog(log) {
-	log_area.val(moment().format('YYYY-MM-DD HH:mm:ss.SSS') + ' - ' + log + '\n' + log_area.val());
+	log_area.val(moment().format('YYYY-MM-DD HH:mm:ss.SSS') + ' - ' + log + '\n' + log_area.val().substr(0, 1000));
 }
 
 function makeRequest(rps) {
