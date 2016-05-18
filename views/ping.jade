@@ -1,0 +1,39 @@
+extends layout
+
+block content
+	.container
+		.row
+			.col-lg-12
+				h1 Ping
+		.row
+			.col-lg-12
+				br
+		.row
+			.col-lg-12
+				.btn-group#request(data-toggle="buttons")
+					label.btn.btn-default.btn-lg.active
+						input(type="radio", name="request", value="0")
+						| Stop
+					label.btn.btn-success.btn-lg
+						input(type="radio", name="request", value="1")
+						| 1 req / s
+					label.btn.btn-warning.btn-lg
+						input(type="radio", name="request", value="10")
+						| 10 req / s
+					label.btn.btn-danger.btn-lg
+						input(type="radio", name="request", value="20")
+						| 20 req / s
+
+		.row
+			.col-lg-12
+				h1
+					span#rps 0.00
+					| &nbsp;RPS
+		.row
+			.col-lg-12
+				h1 Result
+		.row
+			.col-lg-12
+				textarea#log.form-control(cols="50", rows="25")
+	script(src="/javascripts/moment.min.js")
+	script(src="/javascripts/ping.js")

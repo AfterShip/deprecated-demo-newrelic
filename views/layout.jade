@@ -1,0 +1,26 @@
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/bootstrap-3.3.6-dist/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		script(src='/javascripts/jquery-1.12.3.min.js')
+		script(src='/bootstrap-3.3.6-dist/js/bootstrap.min.js')
+	body
+		nav.navbar.navbar-default.navbar-static-top.navbar-inverse
+			.container-fluid
+				.navbar-header
+					button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-8" aria-expanded="false")
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href="#") New Relic Demo
+				.collapse.navbar-collapse#bs-example-navbar-collapse-8
+					ul.nav.navbar-nav
+						li.active
+							a(href="/") Home
+						li
+							a(href="/ping") Ping
+
+		block content
