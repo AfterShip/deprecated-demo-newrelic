@@ -1,6 +1,7 @@
 var handler;
 var log_area;
 var rps;
+var mix;
 var request_count = 0;
 var rps_start = 0;
 
@@ -27,7 +28,7 @@ function updateRps() {
 }
 
 function appendLog(log) {
-	log_area.val(moment().format('YYYY-MM-DD HH:mm:ss.SSS') + ' - ' + log + '\n' + log_area.val().substr(0, 1000));
+	log_area.val(moment().format('YYYY-MM-DD HH:mm:ss.SSS') + ' - ' + log + '\n' + log_area.val().substr(0, 1300));
 }
 
 function makeRequest(rps) {
@@ -46,13 +47,21 @@ function makeRequest(rps) {
 	}
 
 	handler = setInterval(function () {
+		var body = {
+			mix: mix.is(':checked'),
+			a: 1,
+			aa: false,
+			aaaa: true
+		};
+
 		request_count++;
 		$.ajax({
 			url: '/ping',
-			method: 'post',
+			type: 'post',
 			dataType: 'json',
+			data: body,
 			success: function (data) {
-				appendLog('200 Success');
+				appendLog('200 Success, response time: ' + data.response_time + 'ms');
 			},
 			error: function(err) {
 				appendLog(err.status + ' ' + err.statusText);
@@ -64,6 +73,7 @@ function makeRequest(rps) {
 $(function () {
 	log_area = $('#log');
 	rps = $('#rps');
+	mix = $('#mix');
 
 	setInterval(function(){
 		updateRps();

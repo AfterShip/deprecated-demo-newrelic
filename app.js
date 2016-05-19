@@ -40,8 +40,14 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({limit: '25mb', extended: true}));
+
+// parse application/json
+app.use(bodyParser.json({limit: '25mb'}));
+
+// parse text https://github.com/expressjs/body-parser#bodyparsertextoptions
+app.use(bodyParser.text({limit: '25mb'}));
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -66,6 +72,7 @@ app.use(function (req, res) {
 // will print stacktrace
 if (app.get('env') === 'development') {
 	app.use(function (err, req, res, next) {
+		console.log(err.stack);
 		res.status(500);
 		res.render('error', {
 			message: '500 Error'
@@ -76,6 +83,7 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
+	console.log(err.stack);
 	res.status(500);
 	res.render('error', {
 		message: '500 Error'
