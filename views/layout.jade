@@ -22,5 +22,28 @@ html
 							a(href="/") Home
 						li
 							a(href="/ping") Ping
+						li
+							a(href="/slow-res") Slow External Response
+						li.dropdown
+							a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false")
+								| Redis
+								span.caret
+							ul.dropdown-menu
+								li
+									a(href="/redis") Regular Operation
+								li
+									a(href="/redis/error") Error
 
+						li.dropdown
+							a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false")
+								| MongoDB
+								span.caret
+							ul.dropdown-menu
+								li
+									a(href="/mongodb") Regular Operation
+								li
+									a(href="/mongodb/error") Error
+
+						li
+							a(href="/mix") Web External + Redis + MongoDB
 		block content

@@ -4,6 +4,8 @@
  * Module dependencies.
  */
 
+require('newrelic');
+
 var app = require('../app');
 var debug = require('debug')('demo-newrelic:server');
 var http = require('http');
