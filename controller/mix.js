@@ -24,7 +24,7 @@ router.get('/', function (req, res) {
 
 	// web external
 	request({
-		url: `http://slowwly.robertomurray.co.uk/delay/${Math.random() * 2000 + 1000}/url/http://www.google.com`,
+		url: `http://slowwly.robertomurray.co.uk/delay/${Math.round(Math.random() * 2000 + 1000)}/url/http://www.google.com`,
 		method: 'get'
 	}, function(err, response, body){
 		// redis
