@@ -4,6 +4,7 @@ var router = express.Router();
 var request = require('request');
 var mongoose = require('mongoose');
 var MyCar = mongoose.model('MyCar');
+var newrelic = require('newrelic');
 
 router.get('/', function (req, res) {
 	var req_start = moment().valueOf();
@@ -24,7 +25,7 @@ router.get('/', function (req, res) {
 
 	// web external
 	request({
-		url: `http://slowwly.robertomurray.co.uk/delay/${Math.round(Math.random() * 2000 + 1000)}/url/http://www.google.com`,
+		url: `http://slowwly.robertomurray.co.uk/delay/${Math.round(Math.random() * 500)}/url/http://www.google.com`,
 		method: 'get'
 	}, function(err, response, body){
 		// redis
@@ -47,22 +48,22 @@ router.get('/', function (req, res) {
 				// mongodb add a car
 				var my_car = new MyCar();
 				my_car.name = moment().valueOf();
-				my_car.save(function(err, saved_car) {
+				my_car.save(newrelic.createTracer('db:save', function(err, saved_car) {
 					if (err) {
 						render(err);
 						return;
 					}
 
 					// mongodb find the car
-					MyCar.findById(saved_car.id, function(err, car) {
+					MyCar.findById(saved_car.id, newrelic.createTracer('db:findById', function(err, car) {
 						if (err) {
 							render(err);
 							return;
 						}
 
 						render();
-					});
-				});
+					}));
+				}));
 			});
 		});
 	});
