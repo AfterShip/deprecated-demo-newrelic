@@ -42,13 +42,11 @@ router.post('/', function (req, res) {
 	}
 
 	if (req.body.mix === 'false') {
-		console.log('simple');
 		res.json({
 			err: null,
 			response_time: moment().valueOf() - req_start
 		});
 	} else {
-		console.log('mix');
 		// web external
 		request({
 			url: `http://www.google.com`,
