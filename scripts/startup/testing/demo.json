@@ -1,0 +1,15 @@
+[
+	{
+		"name": "demo",
+		"run_as_user": "deploy",
+		"cwd": "/deploy/demo-newrelic/current",
+		"script": "./bin/www",
+		"log_date_format": "YYYY-MM-DD HH:mm:ss:SSS Z",
+		"env": {
+			"NODE_ENV": "testing"
+		},
+		"error_file": "/deploy/demo-newrelic/current/log/pm2-demo-error.log",
+		"out_file": "/deploy/demo-newrelic/current/log/pm2-demo-output.log",
+		"exec_mode": "fork"
+	}
+]
